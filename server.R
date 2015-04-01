@@ -11,8 +11,10 @@ shinyServer(function(input, output) {
   output$encHist <- renderPlot({
     input$goButton
     tmp <- isolate(totalEnc(DT = pop(), x0 = input$x0, iter = input$iter, p_Move = input$p_Move))
-    Histogram <<- hist(tmp, col = 'steelblue', border = 'white', main = "Distribution of Number of Encounters", 
-                       xlab = "Number of Encounters", cex.lab = 1.5, cex.axis = 1.5, cex.main = 1.5 )
+    Histogram <- isolate(hist(tmp, col = 'steelblue', border = 'white', 
+                       main = paste("Distribution of Total Number of Encounters After", input$iter,"hours", sep = " "), 
+                       xlab = paste("Total Number of Encounters After", input$iter,"hours", sep = " "), 
+                       cex.lab = 1.5, cex.axis = 1.5, cex.main = 1.5))
     #     abline(v = median(tmp), col = "red", lwd = 3)
     #     abline(v = median(tmp[tmp != 0]), col = "blue", lwd = 3)
   })
