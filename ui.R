@@ -16,7 +16,7 @@ shinyUI(fluidPage(
         br(),
         sliderInput("size", "Conference Area in sq ft.:", min = 100000, max = 3000000, value = 2600000, step = 100000),
         br(),
-        sliderInput("iter", "Total Number of Hours to Simulate:", min = 1, max = 24, value = 8, step = 1),
+        sliderInput("iter", "Total Number of Hours to Simulate:", min = 1, max = 24, value = 4, step = 1),
         br(),
         sliderInput("x0", "Beacon Range (ft.):", min = 5, max = 100, value = 50, step = 5),
         br(),
@@ -27,7 +27,11 @@ shinyUI(fluidPage(
     
     # Show a plot of the generated distribution
     mainPanel(
-      plotOutput("encHist")
+      tags$style(type='text/css', '#text1 {background-color: rgba(0,0,0,0); color: red; font-size: 22px}'),
+      tags$style(type='text/css', '#text2 {background-color: rgba(0,0,0,0); color: blue;font-size: 22px}'),
+      plotOutput("encHist"), 
+      htmlOutput("text1"),
+      htmlOutput("text2")
     )
   )
 ))
