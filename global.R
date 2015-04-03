@@ -12,6 +12,8 @@ simPop <- function(N = 40000, n = 160, a = 1600, b = 1600){
   # select out n participants from the N 
   # make sure you set the seed here, since you would need the participants' ids to be the same always
   set.seed(123)
+  # Initially confine our active personas to a smaller area to simulate the fact that they will start from 
+  # HP booth.
   DT[id == sample(1:N, n), c("is_participant", "x", "y") := list(1, runif(n, min = a*0.25, max = a*0.75), 
                                                                  runif(n, min = b*0.25, max = b*0.75))]
   return(DT)
