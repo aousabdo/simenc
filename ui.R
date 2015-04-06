@@ -23,19 +23,26 @@ shinyUI(fluidPage(
         sliderInput("p_Move", "Percentage of population Actively Moving Around", min = 0.2, max = 1, value = 0.5, step = 0.1), 
         br(),
         actionButton("goButton", "Run!")
-        )
+      )
       
     ),
     
     # Show a plot of the generated distribution
     mainPanel(
-      tags$style(type='text/css', '#text0 {background-color: rgba(0,0,0,0); color: blue; font-size: 22px}'),
-      # tags$style(type='text/css', '#text1 {background-color: rgba(0,0,0,0); color: red; font-size: 22px}'),
-      # tags$style(type='text/css', '#text2 {background-color: rgba(0,0,0,0); color: blue;font-size: 22px}'),
-      plotOutput("encHist", width = "800px", height = "600px"), 
-      htmlOutput("text0")
-#       htmlOutput("text1"),
-#       htmlOutput("text2")
+      tabsetPanel(
+        tabPanel(title = "Figure",
+          tags$style(type='text/css', '#description {background-color: rgba(0,0,0,0); color: black; font-size: 22px}'),
+          tags$style(type='text/css', '#figDescription {background-color: rgba(0,0,0,0); color: black; font-size: 22px}'),
+          # tags$style(type='text/css', '#text1 {background-color: rgba(0,0,0,0); color: red; font-size: 22px}'),
+          # tags$style(type='text/css', '#text2 {background-color: rgba(0,0,0,0); color: blue;font-size: 22px}'),
+          plotOutput("encHist", width = "800px", height = "600px"), 
+          htmlOutput("figDescription"),
+          htmlOutput("description")
+        ),
+        tabPanel("About", includeMarkdown("About.md"))
+      )
+      #       htmlOutput("text1"),
+      #       htmlOutput("text2")
     )
   )
 ))
